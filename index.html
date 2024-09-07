@@ -8,195 +8,179 @@
 </head>
 <body>
     <h1>JioSaavn Music Search</h1>
-  <style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-    padding-bottom: 100px; /* Espaço para o player de áudio */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-h1 {
-    color: #1a73e8;
-    font-size: 2em; /* Reduzir o tamanho do título em dispositivos móveis */
-    margin-bottom: 20px;
-}
+        h1 {
+            color: #1a73e8;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
 
-.search-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
-}
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
 
-input[type="text"] {
-    padding: 12px 15px; /* Ajustar o padding */
-    font-size: 16px; /* Reduzir o tamanho da fonte */
-    border: 2px solid #ddd;
-    border-radius: 25px;
-    width: 100%; /* Ocupa toda a largura disponível */
-    max-width: 300px; /* Limitar a largura máxima */
-    transition: border-color 0.3s;
-    outline: none;
-    margin-right: 10px;
-}
+        input[type="text"] {
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 300px;
+            transition: border-color 0.3s;
+            outline: none;
+            margin-right: 10px;
+        }
 
-input[type="text"]:focus {
-    border-color: #1a73e8;
-}
+        input[type="text"]:focus {
+            border-color: #1a73e8;
+        }
 
-button {
-    padding: 12px 20px; /* Ajustar o padding */
-    font-size: 16px; /* Reduzir o tamanho da fonte */
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
 
-button:hover {
-    background-color: #155bb5;
-    transform: translateY(-2px);
-}
+        button:hover {
+            background-color: #155bb5;
+            transform: translateY(-2px);
+        }
 
-h2 {
-    margin-top: 30px; /* Reduzir a margem superior */
-    color: #444;
-}
+        h2 {
+            margin-top: 30px;
+            color: #444;
+        }
 
-.results-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+        .results-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-.song-card {
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    padding: 15px; /* Ajustar o padding */
-    width: 90%; /* Ocupa 90% da largura disponível */
-    max-width: 350px; /* Limitar a largura máxima */
-    display: flex;
-    align-items: flex-start;
-    transition: box-shadow 0.3s, transform 0.3s;
-}
+        .song-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 15px;
+            width: 90%;
+            max-width: 350px;
+            display: flex;
+            align-items: flex-start;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
 
-.song-image {
-    width: 60px; /* Reduzir a largura da imagem */
-    height: 60px; /* Reduzir a altura da imagem */
-    border-radius: 10px;
-    margin-right: 10px;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
+        .song-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
 
-.song-image:hover {
-    transform: scale(1.1);
-}
+        .song-image:hover {
+            transform: scale(1.1);
+        }
 
-.song-info {
-    flex-grow: 1;
-}
+        .song-info {
+            flex-grow: 1;
+        }
 
-.song-info p {
-    margin: 5px 0;
-    font-size: 0.9em; /* Ajustar o tamanho da fonte */
-    color: #555;
-}
+        .song-info p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #555;
+        }
 
-.download-links {
-    margin-top: 10px;
-}
+        .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a73e8;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        }
 
-.download-links a {
-    text-decoration: none;
-    color: #1a73e8;
-    font-weight: bold;
-    margin-right: 5px;
-    transition: color 0.3s;
-}
+        #now-playing-info {
+            display: flex;
+            align-items: center;
+        }
 
-.download-links a:hover {
-    color: #155bb5;
-}
+        #now-playing-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
 
-.audio-player {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #1a73e8;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px; /* Ajustar o padding */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-}
+        #now-playing-text strong {
+            font-size: 1em;
+        }
 
-#now-playing-info {
-    display: flex;
-    align-items: center;
-}
+        #now-playing-text p {
+            margin: 5px 0 0 0;
+            font-size: 0.8em;
+            color: #ddd;
+        }
 
-#now-playing-img {
-    width: 40px; /* Reduzir a largura da imagem do álbum */
-    height: 40px; /* Reduzir a altura da imagem do álbum */
-    border-radius: 10px;
-    margin-right: 10px;
-}
+        audio {
+            flex-grow: 1;
+            margin-left: 15px;
+            height: 30px;
+        }
 
-#now-playing-text strong {
-    font-size: 1em; /* Reduzir o tamanho da fonte */
-}
+        @media (max-width: 768px) {
+            .song-card {
+                width: 90%;
+                margin: 10px 0;
+            }
 
-#now-playing-text p {
-    margin: 5px 0 0 0;
-    font-size: 0.8em; /* Reduzir o tamanho da fonte */
-    color: #ddd;
-}
+            .results-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
 
-audio {
-    flex-grow: 1;
-    margin-left: 15px;
-    height: 30px; /* Reduzir a altura do player de áudio */
-}
+            #now-playing-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-@media (max-width: 768px) {
-    .song-card {
-        width: 90%; /* Ocupa 90% da largura disponível */
-        margin: 10px 0;
-    }
+            audio {
+                margin-top: 10px;
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
 
-    .results-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    #now-playing-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    audio {
-        margin-top: 10px;
-        margin-left: 0;
-        width: 100%;
-    }
-}
-
-  </style>
     <div class="search-container">
         <input type="text" id="query" placeholder="Search for a song..." />
         <button onclick="searchSongs()">Search</button>
@@ -204,6 +188,9 @@ audio {
 
     <h2>Results:</h2>
     <div id="results" class="results-container"></div>
+    
+    <!-- Botão Radio adicionado abaixo dos resultados -->
+    <button onclick="playAllSongs()">Radio</button>
 
     <div id="audio-player" class="audio-player">
         <div id="now-playing-info">
@@ -219,13 +206,35 @@ audio {
     </div>
 
     <script>
+        let currentSongIndex = 0;
+        let songList = [];
+
+        function playAllSongs() {
+            if (songList.length > 0) {
+                currentSongIndex = 0;
+                playNextSong();
+            }
+        }
+
+        function playNextSong() {
+            if (currentSongIndex < songList.length) {
+                const song = songList[currentSongIndex];
+                playSong(song);
+
+                const audio = document.getElementById('audio');
+                audio.onended = function() {
+                    currentSongIndex++;
+                    playNextSong();
+                };
+            }
+        }
+
         function playSong(song) {
             const audio = document.getElementById('audio');
             const nowPlayingName = document.getElementById('now-playing-name');
             const nowPlayingArtist = document.getElementById('now-playing-artist');
             const nowPlayingImg = document.getElementById('now-playing-img');
 
-            // Pega a qualidade máxima (320kbps)
             const songUrl = song.downloadUrl.find(url => url.quality === '320kbps').link;
             const songImageUrl = song.image.find(img => img.quality === '150x150').link;
 
@@ -246,6 +255,7 @@ audio {
 
             const results = document.getElementById('results');
             results.innerHTML = '';
+            songList = [];
 
             if (data && data.data && data.data.results.length > 0) {
                 data.data.results.forEach(song => {
@@ -264,12 +274,12 @@ audio {
                         </div>
                     `;
 
-                    // Adicionar o evento de clique na imagem do álbum para tocar a música
                     listItem.querySelector('.song-image').addEventListener('click', function() {
                         playSong(song);
                     });
 
                     results.appendChild(listItem);
+                    songList.push(song);
                 });
             } else {
                 results.innerHTML = 'No results found.';
@@ -282,9 +292,7 @@ audio {
             return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
         }
 
-        // Iniciar busca automática por "Rihanna" ao carregar a página
         window.onload = function() {
-            // Preenche o campo de busca e realiza a pesquisa por "Rihanna"
             document.getElementById('query').value = 'Rihanna';
             searchSongs('Rihanna');
         }
